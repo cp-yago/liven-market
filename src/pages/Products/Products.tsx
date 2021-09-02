@@ -1,15 +1,27 @@
 import React from 'react';
 
+import { Container, ProductsContainer } from './ProductsStyles';
 import Header from '../../components/Header/Header';
-import ProductList from '../../components/ProductList/ProductList';
 import Footer from '../../components/Footer/Footer';
+import ProductItem from './ProductItem/ProductItem';
 
 const Products: React.FC = () => {
   return (
     <>
       <Header />
-      <ProductList />
-      <Footer />
+      <Container>
+        <ProductsContainer>
+          <ProductItem />
+          <ProductItem />
+          <ProductItem />
+          <ProductItem />
+          <ProductItem />
+          <ProductItem />
+          <ProductItem />
+          <ProductItem />
+        </ProductsContainer>
+        <Footer />
+      </Container>
     </>
   );
 };

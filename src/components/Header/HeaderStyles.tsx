@@ -6,6 +6,11 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  width: 100vw;
+  background: rgb(8, 1, 42);
+
+  position: fixed;
+  z-index: 1;
 
   img {
     width: 2rem;
