@@ -1,13 +1,17 @@
 import React from 'react';
 
-import GlobalStyle from './styles/global';
+import { StoreProvider } from './hooks/useStore';
 import Routes from './routes';
+
+import GlobalStyle from './styles/global';
 
 const App = () => {
   return (
     <>
-      <Routes />
-      <GlobalStyle />
+      <StoreProvider>
+        <Routes />
+        <GlobalStyle />
+      </StoreProvider>
     </>
   );
 };
