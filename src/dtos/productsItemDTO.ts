@@ -5,7 +5,7 @@ const productItemDTO = (productItem: IProduct) => {
     id: productItem.id,
     name: productItem.name,
     price: productItem.price,
-    imageUrl: productItem.imageUrl,
+    image: productItem.image,
     stock: productItem.stock,
   };
 };

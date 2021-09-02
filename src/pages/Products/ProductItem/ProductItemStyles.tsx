@@ -17,6 +17,10 @@ const ProductContainer = styled.div`
   flex-direction: column;
   height: 10rem;
   justify-content: space-between;
+
+  img {
+    border-radius: 5px;
+  }
 `;
 
 const ProductName = styled.span`

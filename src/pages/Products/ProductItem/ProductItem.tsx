@@ -10,15 +10,21 @@ import {
   AddButton,
 } from './ProductItemStyles';
 
-const ProductItem: React.FC = () => {
+interface ProductItemProps {
+  name: string;
+  image: string;
+  price: string;
+}
+
+const ProductItem = ({ name, image, price }: ProductItemProps) => {
   return (
     <Container>
       <ProductContainer>
-        <img src="http://lorempixel.com/640/480/food" alt="" />
-        <ProductName>Cadeira Gamer Charles</ProductName>
+        <img src={image} alt="product" />
+        <ProductName>{name}</ProductName>
       </ProductContainer>
       <ProductPriceContainer>
-        <ProductPrice>R$ 300, 00</ProductPrice>
+        <ProductPrice>{`R$ ${price}`}</ProductPrice>
         <AddButton>
           <PlusSquare />
         </AddButton>
