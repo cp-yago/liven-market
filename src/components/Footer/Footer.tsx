@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShoppingCart } from 'react-feather';
+import { useHistory } from 'react-router-dom';
 import { useStore } from '../../hooks/useStore';
 
 import {
@@ -11,10 +12,15 @@ import {
 
 const Footer: React.FC = () => {
   const { totalItens, totalPrice } = useStore();
+  const history = useHistory();
+
+  const navigateToCart = () => {
+    history.push('/cart');
+  };
 
   return (
     <Container>
-      <ItensQuantityContainer>
+      <ItensQuantityContainer onClick={navigateToCart}>
         <ShoppingCart />
         <ItensQuantity>{`${totalItens} ${
           totalItens > 1 ? 'itens' : 'vazio'
