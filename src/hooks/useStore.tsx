@@ -7,6 +7,12 @@ import React, {
   useMemo,
 } from 'react';
 
+import {
+  ToastContainer,
+  toastSuccess,
+  toastError,
+} from '../components/Toast/Toast';
+
 import IProduct from '../interfaces/IProduct';
 import IProductsOnCart from '../interfaces/IProductsOnCart';
 import productItemDTO from '../dtos/productsItemDTO';
@@ -108,6 +114,7 @@ export const StoreProvider: React.FC = ({ children }) => {
         payload: store.cart,
       });
     }
+    toastSuccess('Produto adicionado com sucesso!');
   };
 
   const handleRemoveProduct = (productId: string) => {
@@ -128,6 +135,7 @@ export const StoreProvider: React.FC = ({ children }) => {
         payload: store.cart,
       });
     }
+    toastSuccess('Produto removido!');
   };
 
   useEffect(() => {
@@ -146,6 +154,8 @@ export const StoreProvider: React.FC = ({ children }) => {
       }}
     >
       {children}
+
+      <ToastContainer />
     </StoreContext.Provider>
   );
 };
