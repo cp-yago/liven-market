@@ -10,22 +10,25 @@ import {
   AddButton,
 } from './ProductItemStyles';
 
+import { useStore } from '../../../hooks/useStore';
+import IProduct from '../../../interfaces/IProduct';
+
 interface ProductItemProps {
-  name: string;
-  image: string;
-  price: string;
+  product: IProduct;
 }
 
-const ProductItem = ({ name, image, price }: ProductItemProps) => {
+const ProductItem = ({ product }: ProductItemProps) => {
+  const { handleAddProduct } = useStore();
+
   return (
     <Container>
       <ProductContainer>
-        <img src={image} alt="product" />
-        <ProductName>{name}</ProductName>
+        <img src={product.image} alt="product" />
+        <ProductName>{product.name}</ProductName>
       </ProductContainer>
       <ProductPriceContainer>
-        <ProductPrice>{`R$ ${price}`}</ProductPrice>
-        <AddButton>
+        <ProductPrice>{`R$ ${product.price}`}</ProductPrice>
+        <AddButton onClick={() => handleAddProduct(product)}>
           <PlusSquare />
         </AddButton>
       </ProductPriceContainer>

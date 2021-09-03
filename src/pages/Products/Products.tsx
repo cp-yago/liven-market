@@ -7,7 +7,7 @@ import ProductItem from './ProductItem/ProductItem';
 
 import { useStore } from '../../hooks/useStore';
 
-const Products: React.FC = () => {
+const Products = () => {
   const { products } = useStore();
 
   return (
@@ -16,12 +16,7 @@ const Products: React.FC = () => {
       <Container>
         <ProductsContainer>
           {products.map(product => (
-            <ProductItem
-              key={product.id}
-              name={product.name}
-              image={product.image}
-              price={product.price}
-            />
+            <ProductItem product={product} key={product.id} />
           ))}
         </ProductsContainer>
         <Footer />

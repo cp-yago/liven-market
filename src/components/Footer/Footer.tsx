@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShoppingCart } from 'react-feather';
+import { useStore } from '../../hooks/useStore';
 
 import {
   Container,
@@ -9,13 +10,17 @@ import {
 } from './FooterStyles';
 
 const Footer: React.FC = () => {
+  const { totalItens, totalPrice } = useStore();
+
   return (
     <Container>
       <ItensQuantityContainer>
         <ShoppingCart />
-        <ItensQuantity>16 itens</ItensQuantity>
+        <ItensQuantity>{`${totalItens} ${
+          totalItens > 1 ? 'itens' : 'vazio'
+        }`}</ItensQuantity>
       </ItensQuantityContainer>
-      <ItensTotalPrice>R$ 5000.00</ItensTotalPrice>
+      <ItensTotalPrice>{`R$ ${totalPrice}`}</ItensTotalPrice>
     </Container>
   );
 };
