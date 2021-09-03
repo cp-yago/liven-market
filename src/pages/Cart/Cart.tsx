@@ -6,11 +6,12 @@ import Footer from '../../components/Footer/Footer';
 import CartItem from './CartItem/CartItem';
 import { useStore } from '../../hooks/useStore';
 
-const Cart: React.FC = () => {
+const Cart = () => {
   const { cart } = useStore();
+
   return (
     <Container>
-      <Header />
+      <Header showGoBackButton />
 
       <CartItensContainer>
         {cart.map(product => (

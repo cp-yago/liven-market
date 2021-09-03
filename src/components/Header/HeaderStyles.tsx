@@ -12,6 +12,11 @@ const Container = styled.div`
   position: fixed;
   z-index: 1;
 
+  svg {
+    position: absolute;
+    left: 3rem;
+  }
+
   img {
     width: 2rem;
     margin-right: 0.8rem;
