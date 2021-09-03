@@ -19,8 +19,8 @@ const Products = () => {
             <ProductItem product={product} key={product.id} />
           ))}
         </ProductsContainer>
-        <Footer />
       </Container>
+      <Footer />
     </>
   );
 };

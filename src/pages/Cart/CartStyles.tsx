@@ -9,6 +9,10 @@ const CartItensContainer = styled.div`
   align-items: center;
   width: 100vw;
   padding: 5rem 0;
+
+  @media screen and (min-width: 769px) {
+    flex-direction: row;
+  }
 `;
 
 export { Container, CartItensContainer };

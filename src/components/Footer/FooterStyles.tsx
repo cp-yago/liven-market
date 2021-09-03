@@ -8,6 +8,7 @@ const Container = styled.footer`
   height: 4.5rem;
 
   display: flex;
+  flex: 1;
   justify-content: space-between;
   align-items: center;
   background: rgb(120, 217, 138);

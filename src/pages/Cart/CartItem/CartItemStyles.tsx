@@ -21,6 +21,11 @@ const Container = styled.div`
     height: 7rem;
     border-radius: 5px;
   }
+
+  @media screen and (min-width: 769px) {
+    width: 30vw;
+    margin: 0 1rem;
+  }
 `;
 
 const ProductInfoContainer = styled.div`
