@@ -19,8 +19,8 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <Container>
-      <ItensQuantityContainer onClick={navigateToCart}>
+    <Container onClick={navigateToCart}>
+      <ItensQuantityContainer>
         <ShoppingCart />
         <ItensQuantity>{`${totalItens} ${
           totalItens > 1 ? 'itens' : 'vazio'
