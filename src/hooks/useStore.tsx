@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {
   createContext,
   useContext,
@@ -7,23 +8,20 @@ import React, {
 } from 'react';
 
 import IProduct from '../interfaces/IProduct';
+import IProductsOnCart from '../interfaces/IProductsOnCart';
 import productItemDTO from '../dtos/productsItemDTO';
 import api from '../services/api';
 
-interface ProductOnCart extends IProduct {
-  quantity: number;
-}
-
 interface StoreStateData {
   products: IProduct[];
-  cart: ProductOnCart[];
+  cart: IProductsOnCart[];
   totalItens: number;
   totalPrice: number;
 }
 
 interface StoreContextData extends StoreStateData {
-  // eslint-disable-next-line no-unused-vars
   handleAddProduct: (product: IProduct) => void;
+  handleRemoveProduct: (productId: string) => void;
 }
 
 const initialState = {
@@ -112,6 +110,26 @@ export const StoreProvider: React.FC = ({ children }) => {
     }
   };
 
+  const handleRemoveProduct = (productId: string) => {
+    const productIndex = store.cart.findIndex(
+      (productItem: IProduct) => productItem.id === productId,
+    );
+
+    if (productIndex > -1 && store.cart[productIndex].quantity > 1) {
+      store.cart[productIndex].quantity -= 1;
+      dispatch({
+        type: 'UPDATE_CART',
+        payload: store.cart,
+      });
+    } else {
+      store.cart.splice(productIndex, 1);
+      dispatch({
+        type: 'UPDATE_CART',
+        payload: store.cart,
+      });
+    }
+  };
+
   useEffect(() => {
     getProducts();
   }, []);
@@ -124,6 +142,7 @@ export const StoreProvider: React.FC = ({ children }) => {
         totalItens,
         totalPrice,
         handleAddProduct,
+        handleRemoveProduct,
       }}
     >
       {children}
