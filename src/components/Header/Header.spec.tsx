@@ -12,7 +12,7 @@ jest.mock('react-router-dom', () => ({
   }),
 }));
 
-describe('Testing header component', () => {
+describe('Header component', () => {
   it('renders correctly', () => {
     render(<Header />);
     expect(screen.getByText('LivenMarket')).toBeInTheDocument();

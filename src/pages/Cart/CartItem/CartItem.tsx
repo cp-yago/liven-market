@@ -22,7 +22,7 @@ const CartItem = ({ product }: CartItemProps) => {
 
   return (
     <Container>
-      <img src={product.image} alt="" />
+      <img src={product.image} alt="product" />
 
       <ProductInfoContainer>
         <ProductName>{product.name}</ProductName>
@@ -33,10 +33,15 @@ const CartItem = ({ product }: CartItemProps) => {
       </ProductInfoContainer>
 
       <ButtonsContainer>
-        <Button actionType="add" onClick={() => handleAddProduct(product)}>
+        <Button
+          data-testid="add-button"
+          actionType="add"
+          onClick={() => handleAddProduct(product)}
+        >
           <Plus />
         </Button>
         <Button
+          data-testid="remove-button"
           actionType="remove"
           onClick={() => handleRemoveProduct(product.id)}
         >

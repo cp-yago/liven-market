@@ -7,11 +7,7 @@ import React, {
   useMemo,
 } from 'react';
 
-import {
-  ToastContainer,
-  toastSuccess,
-  toastError,
-} from '../components/Toast/Toast';
+import { ToastContainer, toastSuccess } from '../components/Toast/Toast';
 
 import IProduct from '../interfaces/IProduct';
 import IProductsOnCart from '../interfaces/IProductsOnCart';
