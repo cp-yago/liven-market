@@ -7,7 +7,11 @@ import React, {
   useMemo,
 } from 'react';
 
-import { ToastContainer, toastSuccess } from '../components/Toast/Toast';
+import {
+  ToastContainer,
+  toastSuccess,
+  toastError,
+} from '../components/Toast/Toast';
 
 import IProduct from '../interfaces/IProduct';
 import IProductsOnCart from '../interfaces/IProductsOnCart';
@@ -80,7 +84,9 @@ export const StoreProvider: React.FC = ({ children }) => {
   const getProducts = async () => {
     const response = await api.get('/product');
 
-    if (response.data) {
+    if (!response.data) {
+      toastError('Erro ao buscar produtos');
+    } else {
       const products = response.data.map((product: any) =>
         productItemDTO(product),
       );
@@ -150,7 +156,6 @@ export const StoreProvider: React.FC = ({ children }) => {
       }}
     >
       {children}
-
       <ToastContainer />
     </StoreContext.Provider>
   );
