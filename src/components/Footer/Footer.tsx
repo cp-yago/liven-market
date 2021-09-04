@@ -10,7 +10,7 @@ import {
   ItensTotalPrice,
 } from './FooterStyles';
 
-const Footer: React.FC = () => {
+const Footer = () => {
   const { totalItens, totalPrice } = useStore();
   const history = useHistory();
 
@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <Container onClick={navigateToCart}>
+    <Container onClick={navigateToCart} data-testid="footer-container">
       <ItensQuantityContainer>
         <ShoppingCart />
         <ItensQuantity>{`${totalItens} ${

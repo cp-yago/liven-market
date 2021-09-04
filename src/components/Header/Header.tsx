@@ -12,9 +12,15 @@ interface HeaderProps {
 
 const Header = ({ showGoBackButton }: HeaderProps) => {
   const history = useHistory();
+
   return (
     <Container>
-      {showGoBackButton && <ArrowLeft onClick={() => history.goBack()} />}
+      {showGoBackButton && (
+        <ArrowLeft
+          onClick={() => history.push('/')}
+          data-testid="go-back-button"
+        />
+      )}
       <img src={LivenLogo} alt="Logo" />
       <span>LivenMarket</span>
     </Container>
