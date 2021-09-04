@@ -10,6 +10,11 @@ const CartItensContainer = styled.div`
   width: 100vw;
   padding: 5rem 0;
 
+  .empty-cart-message {
+    position: absolute;
+    top: 45%;
+  }
+
   @media screen and (min-width: 769px) {
     flex-direction: row;
   }

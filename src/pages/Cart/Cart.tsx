@@ -14,9 +14,11 @@ const Cart = () => {
       <Header showGoBackButton />
 
       <CartItensContainer data-testid="cart-itens-container">
-        {cart.map(product => (
-          <CartItem key={product.id} product={product} />
-        ))}
+        {cart.length === 0 ? (
+          <span className="empty-cart-message">Carrinho vazio</span>
+        ) : (
+          cart.map(product => <CartItem key={product.id} product={product} />)
+        )}
       </CartItensContainer>
 
       <Footer />
