@@ -13,7 +13,7 @@ const Cart = () => {
     <Container>
       <Header showGoBackButton />
 
-      <CartItensContainer>
+      <CartItensContainer data-testid="cart-itens-container">
         {cart.map(product => (
           <CartItem key={product.id} product={product} />
         ))}
