@@ -14,13 +14,13 @@ const Products = () => {
     <>
       <Header />
       <Container>
-        <ProductsContainer>
+        <ProductsContainer data-testid="product-list-container">
           {products.map(product => (
             <ProductItem product={product} key={product.id} />
           ))}
         </ProductsContainer>
       </Container>
-      <Footer />
+      <Footer data-testid="footer" />
     </>
   );
 };

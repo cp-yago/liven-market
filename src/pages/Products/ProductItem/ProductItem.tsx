@@ -28,7 +28,10 @@ const ProductItem = ({ product }: ProductItemProps) => {
       </ProductContainer>
       <ProductPriceContainer>
         <ProductPrice>{`R$ ${product.price}`}</ProductPrice>
-        <AddButton onClick={() => handleAddProduct(product)}>
+        <AddButton
+          data-testid="add-button"
+          onClick={() => handleAddProduct(product)}
+        >
           <PlusSquare />
         </AddButton>
       </ProductPriceContainer>

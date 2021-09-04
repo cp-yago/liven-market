@@ -14,7 +14,7 @@ const Header = ({ showGoBackButton }: HeaderProps) => {
   const history = useHistory();
 
   return (
-    <Container>
+    <Container data-testid="header-container">
       {showGoBackButton && (
         <ArrowLeft
           onClick={() => history.push('/')}
