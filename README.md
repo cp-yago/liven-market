@@ -1,6 +1,6 @@
 <div align="center">
   <img width="auto" src=".github/liven-market-logo.png">
-  <h1>loja online de produtos aleatórios</h1>
+  <h1>loja online feita em React</h1>
 </div>
 
 ## Objetivo
