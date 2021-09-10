@@ -43,7 +43,7 @@ const CartItem = ({ product }: CartItemProps) => {
         <Button
           data-testid="remove-button"
           actionType="remove"
-          onClick={() => handleRemoveProduct(product.id)}
+          onClick={() => handleRemoveProduct(product)}
         >
           <Minus />
         </Button>

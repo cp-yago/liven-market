@@ -1,3 +1,5 @@
+/* eslint-disable no-redeclare */
+/* eslint-disable no-case-declarations */
 /* eslint-disable no-unused-vars */
 import React, {
   createContext,
@@ -27,7 +29,7 @@ interface StoreStateData {
 
 interface StoreContextData extends StoreStateData {
   handleAddProduct: (product: IProduct) => void;
-  handleRemoveProduct: (productId: string) => void;
+  handleRemoveProduct: (product: IProduct) => void;
 }
 
 const initialState = {
@@ -44,10 +46,55 @@ const storeReducer = (state: StoreStateData, action: any) => {
         ...state,
         products: action.payload,
       };
-    case 'UPDATE_CART':
+    case 'ADD_PRODUCT':
+      const productToAdd = action.payload;
+      const productIndex = state.cart.findIndex(
+        item => item.id === productToAdd.id,
+      );
+      if (productIndex < 0) {
+        return {
+          ...state,
+          cart: [...state.cart, { ...productToAdd, quantity: 1 }],
+        };
+      }
       return {
         ...state,
-        cart: [...action.payload],
+        cart: state.cart.map((item, index) => {
+          if (productIndex !== index) {
+            return item;
+          }
+          return {
+            ...item,
+            quantity: item.quantity + 1,
+          };
+        }),
+      };
+    case 'REMOVE_PRODUCT':
+      const productToRemove = action.payload;
+      const productToRemoveIndex = state.cart.findIndex(
+        item => item.id === productToRemove.id,
+      );
+
+      if (
+        productToRemoveIndex > -1 &&
+        state.cart[productToRemoveIndex].quantity > 1
+      ) {
+        return {
+          ...state,
+          cart: state.cart.map((item, index) => {
+            if (productToRemoveIndex !== index) {
+              return item;
+            }
+            return {
+              ...item,
+              quantity: item.quantity - 1,
+            };
+          }),
+        };
+      }
+      return {
+        ...state,
+        cart: state.cart.filter(item => item.id !== productToRemove.id),
       };
     default:
       return state;
@@ -99,44 +146,18 @@ export const StoreProvider: React.FC = ({ children }) => {
   };
 
   const handleAddProduct = (product: IProduct) => {
-    const productIndex = store.cart.findIndex(
-      (productItem: IProduct) => productItem.id === product.id,
-    );
-
-    if (productIndex < 0) {
-      const updatedCart = [...store.cart, { ...product, quantity: 1 }];
-      dispatch({
-        type: 'UPDATE_CART',
-        payload: updatedCart,
-      });
-    } else {
-      store.cart[productIndex].quantity += 1;
-      dispatch({
-        type: 'UPDATE_CART',
-        payload: store.cart,
-      });
-    }
+    dispatch({
+      type: 'ADD_PRODUCT',
+      payload: product,
+    });
     toastSuccess('Produto adicionado com sucesso!');
   };
 
-  const handleRemoveProduct = (productId: string) => {
-    const productIndex = store.cart.findIndex(
-      (productItem: IProduct) => productItem.id === productId,
-    );
-
-    if (productIndex > -1 && store.cart[productIndex].quantity > 1) {
-      store.cart[productIndex].quantity -= 1;
-      dispatch({
-        type: 'UPDATE_CART',
-        payload: store.cart,
-      });
-    } else {
-      store.cart.splice(productIndex, 1);
-      dispatch({
-        type: 'UPDATE_CART',
-        payload: store.cart,
-      });
-    }
+  const handleRemoveProduct = (product: IProduct) => {
+    dispatch({
+      type: 'REMOVE_PRODUCT',
+      payload: product,
+    });
     toastSuccess('Produto removido!');
   };
 
